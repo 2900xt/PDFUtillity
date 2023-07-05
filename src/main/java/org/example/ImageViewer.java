@@ -15,7 +15,7 @@ public class ImageViewer extends  JPanel
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(image, 25, 25, image.getWidth(), image.getHeight(), null);
+        g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
     }
 
     public static JFrame viewImage(BufferedImage img)
@@ -23,7 +23,7 @@ public class ImageViewer extends  JPanel
         JFrame frame = new JFrame("Image Panel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(new ImageViewer(img));
-        frame.setSize(img.getWidth() + 50, img.getHeight() + 50);
+        frame.setSize(img.getWidth(), img.getHeight());
         frame.setVisible(true);
         return frame;
     }

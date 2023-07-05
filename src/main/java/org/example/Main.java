@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Main
@@ -94,7 +95,6 @@ public class Main
                 }
                 totalBarcodes += num;
             }
-
             int startingRow = Integer.parseInt(JOptionPane.showInputDialog("Enter the starting row (zero indexed)")) % 10;
             int startingCol = Integer.parseInt(JOptionPane.showInputDialog("Enter the starting column (zero indexed)")) % 3;
 
@@ -131,8 +131,7 @@ public class Main
                 startingCol = 0;
                 cStream.close();
             }
-            String filename = JOptionPane.showInputDialog("Enter output file name");
-            output.save("./" + filename);
+            output.save("./" + LocalDateTime.now() + ".pdf");
             output.close();
             System.exit(0);
         } catch (Exception e)

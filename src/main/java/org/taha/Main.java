@@ -82,7 +82,7 @@ public class Main
                         try {
                             BufferedImage img = images.get(imgInd++);
                             PDImageXObject pdImage = LosslessFactory.createFromImage(output, img);
-                            cStream.drawImage(pdImage, x, y, unit_x / 1.125f, unit_y * 1.025f);
+                            cStream.drawImage(pdImage, x, y, unit_x / 1.1f, unit_y * 1.03f);
                         } catch (IndexOutOfBoundsException ignored) {}
                     }
                 }

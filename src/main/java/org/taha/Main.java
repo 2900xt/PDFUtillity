@@ -1,70 +1,22 @@
-package org.example;
+package org.taha;
 
 import org.apache.pdfbox.pdmodel.*;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import org.apache.pdfbox.rendering.PDFRenderer;
+import org.taha.Util.PDFTools;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Main
 {
-    /*
-     * Goal: Condense two or more PDF documents into one
-     * 1. Ask the user to choose some documents
-     */
-
     public static ArrayList<BufferedImage> barcodes;
     public static PDDocument output;
-
-
-    public static PDPage createBlankPage(PDDocument doc)
-    {
-        PDPage newPage = new PDPage(new PDRectangle(612, 792));
-        doc.addPage(newPage);
-        return newPage;
-    }
-
-    public static BufferedImage getImageFromPDF(PDDocument document) throws IOException
-    {
-        PDFRenderer renderer = new PDFRenderer(document);
-        BufferedImage pageImage = renderer.renderImageWithDPI(0, 600f);
-        PDPage pg = document.getPage(0);
-
-        float height = pageImage.getHeight();
-        float width = pageImage.getWidth();
-        float unit_x = width / 3, unit_y = height / 10;
-        int x = 0, y = (int)(unit_y / 2);
-        BufferedImage subImage = pageImage.getSubimage(x, y, (int)unit_x, (int)unit_y);
-        ImageViewer.viewImage(subImage);
-        return subImage;
-    }
-
-    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException
-    {
-        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_DEFAULT);
-        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
-        outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
-        return outputImage;
-    }
-
-    //Ask the user how many of each barcode they want
-    public static int getNumber(BufferedImage barcode)
-    {
-        JFrame f = ImageViewer.viewImage(barcode);
-        int output = Integer.parseInt(JOptionPane.showInputDialog("Enter the amount of instances for this barcode:"));
-        f.setVisible(false);
-        return output;
-    }
-
     public static void main(String[] args) {
         try {
             JFileChooser fileChooser = new JFileChooser();
@@ -75,28 +27,35 @@ public class Main
 
             fileChooser.showOpenDialog(null);
             File[] selected = fileChooser.getSelectedFiles();
+
+            if(selected == null || selected.length == 0)
+            {
+                throw new RuntimeException("No Files Selected");
+            }
             barcodes = new ArrayList<>();
 
             for (File f : selected)
             {
                 PDDocument doc = PDDocument.load(f);
-                barcodes.add(getImageFromPDF(doc));
+                barcodes.add(PDFTools.getImageFromPDF(doc));
             }
             output = new PDDocument();
 
             ArrayList<BufferedImage> images = new ArrayList<>();
+            ArrayList<Integer> data = ImageViewer.getBarcodeSelection(barcodes);
             int totalBarcodes = 0;
-            for(BufferedImage img : barcodes)
+
+            int startingRow = data.get(0), startingCol = data.get(1);
+
+            for(int i = 2; i < data.size(); i++)
             {
-                int num = getNumber(img);
-                for(int i = 0; i < num; i++)
+                int count = data.get(i), index = i-2;
+                totalBarcodes += count;
+                for(int j = 0; j < count; j++)
                 {
-                    images.add(img);
+                    images.add(barcodes.get(index));
                 }
-                totalBarcodes += num;
             }
-            int startingRow = Integer.parseInt(JOptionPane.showInputDialog("Enter the starting row (zero indexed)")) % 10;
-            int startingCol = Integer.parseInt(JOptionPane.showInputDialog("Enter the starting column (zero indexed)")) % 3;
 
             totalBarcodes += startingRow;
             totalBarcodes += startingCol * 10;
@@ -110,7 +69,7 @@ public class Main
             int imgInd = 0;
             for(int i = 0; i < pageCount; i++)
             {
-                PDPage pg = createBlankPage(output);
+                PDPage pg = PDFTools.createBlankPage(output);
                 PDPageContentStream cStream = new PDPageContentStream(output, pg);
                 float height = pg.getMediaBox().getHeight();
                 float width = pg.getMediaBox().getWidth();
@@ -123,7 +82,7 @@ public class Main
                         try {
                             BufferedImage img = images.get(imgInd++);
                             PDImageXObject pdImage = LosslessFactory.createFromImage(output, img);
-                            cStream.drawImage(pdImage, x, y, unit_x, unit_y);
+                            cStream.drawImage(pdImage, x, y, unit_x / 1.125f, unit_y * 1.025f);
                         } catch (IndexOutOfBoundsException ignored) {}
                     }
                 }
@@ -131,12 +90,15 @@ public class Main
                 startingCol = 0;
                 cStream.close();
             }
-            output.save("./" + LocalDateTime.now() + ".pdf");
+            File outputFileDir = new File("./OutputFiles/");
+            if(!outputFileDir.exists()) outputFileDir.mkdirs();
+            String time = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+            output.save("./OutputFiles/" + time.substring(0, time.indexOf('.')) + ".pdf");
             output.close();
             System.exit(0);
         } catch (Exception e)
         {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Critical Error", JOptionPane.ERROR_MESSAGE);
             System.exit(-1);
         }
     }

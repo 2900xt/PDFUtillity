@@ -10,9 +10,11 @@ import java.io.IOException;
 
 public class PDFTools
 {
+    public static final float QUALITY = 600f;
+    public static final float STD_WIDTH = 612f, STD_HEIGHT = 792f;
     public static PDPage createBlankPage(PDDocument doc)
     {
-        PDPage newPage = new PDPage(new PDRectangle(612, 792));
+        PDPage newPage = new PDPage(new PDRectangle(STD_WIDTH, STD_HEIGHT));
         doc.addPage(newPage);
         return newPage;
     }
@@ -20,13 +22,12 @@ public class PDFTools
     public static BufferedImage getImageFromPDF(PDDocument document) throws IOException
     {
         PDFRenderer renderer = new PDFRenderer(document);
-        BufferedImage pageImage = renderer.renderImageWithDPI(0, 600f);
+        BufferedImage pageImage = renderer.renderImageWithDPI(0, QUALITY);
 
         float height = pageImage.getHeight();
         float width = pageImage.getWidth();
         float unit_x = width / 3, unit_y = height / 10;
         int x = 0, y = (int)(unit_y / 2);
-        BufferedImage subImage = pageImage.getSubimage(x, y, (int)unit_x, (int)unit_y);
-        return subImage;
+        return pageImage.getSubimage(x, y, (int)unit_x, (int)unit_y);
     }
 }

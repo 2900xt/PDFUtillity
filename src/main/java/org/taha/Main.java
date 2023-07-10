@@ -77,12 +77,12 @@ public class Main
                 float unit_x = width / 3, unit_y = height / 11;
                 for(float x = startingCol * unit_x; x < width; x += unit_x)
                 {
-                    for(float y = height - (unit_y / 2 + (startingRow + 1) * unit_y); y >= unit_y / 2; y -= unit_y)
+                    for(float y = height - (unit_y / 2 + (startingRow + 1.125f) * unit_y); y >= 0; y -= (unit_y * 0.995f))
                     {
                         try {
                             BufferedImage img = images.get(imgInd++);
                             PDImageXObject pdImage = LosslessFactory.createFromImage(output, img);
-                            cStream.drawImage(pdImage, x, y, unit_x / 1.1f, unit_y * 1.03f);
+                            cStream.drawImage(pdImage, x, y, unit_x, unit_y * 1.05f);
                         } catch (IndexOutOfBoundsException ignored) {}
                     }
                 }
@@ -91,7 +91,10 @@ public class Main
                 cStream.close();
             }
             File outputFileDir = new File("./OutputFiles/");
-            if(!outputFileDir.exists()) outputFileDir.mkdirs();
+            if(!outputFileDir.exists() && !outputFileDir.mkdirs())
+            {
+                throw new RuntimeException("Unable to create output file directory");
+            }
             String time = LocalDateTime.now().toString().replace(":", "");
             output.save("./OutputFiles/" + time.substring(0, time.indexOf('.')) + ".pdf");
             output.close();

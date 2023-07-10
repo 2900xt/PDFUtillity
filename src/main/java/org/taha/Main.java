@@ -17,7 +17,8 @@ public class Main
 {
     public static ArrayList<BufferedImage> barcodes;
     public static PDDocument output;
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         try {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setMultiSelectionEnabled(true);
@@ -75,9 +76,9 @@ public class Main
                 float width = pg.getMediaBox().getWidth();
 
                 float unit_x = width / 3, unit_y = height / 11;
-                for(float y = height - (unit_y / 2 + (startingRow + 1) * unit_y); y >= unit_y / 2; y -= unit_y)
+                for(float x = startingCol * unit_x; x < width; x += unit_x)
                 {
-                    for(float x = startingCol * unit_x; x < width; x += unit_x)
+                    for(float y = height - (unit_y / 2 + (startingRow + 1) * unit_y); y >= unit_y / 2; y -= unit_y)
                     {
                         try {
                             BufferedImage img = images.get(imgInd++);
@@ -92,7 +93,7 @@ public class Main
             }
             File outputFileDir = new File("./OutputFiles/");
             if(!outputFileDir.exists()) outputFileDir.mkdirs();
-            String time = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+            String time = LocalDateTime.now().toString().replace(":", "");
             output.save("./OutputFiles/" + time.substring(0, time.indexOf('.')) + ".pdf");
             output.close();
             System.exit(0);

@@ -1,5 +1,7 @@
 package org.taha;
 
+import org.taha.Util.ImageTools;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,9 +12,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ImageViewer extends JPanel
 {
     private BufferedImage image;
+    private static final int IMG_WIDTH = 600, IMG_HEIGHT = 400;
     public ImageViewer(BufferedImage img)
     {
-        this.image = img;
+        this.image = ImageTools.resizeImage(img, IMG_WIDTH, IMG_HEIGHT);
     }
 
     protected void paintComponent(Graphics g)
@@ -22,13 +25,12 @@ public class ImageViewer extends JPanel
 
     public void changeImage(BufferedImage image)
     {
-        this.image = image;
+        this.image = ImageTools.resizeImage(image, IMG_WIDTH, IMG_HEIGHT);
         repaint();
     }
 
     public static ArrayList<Integer> getBarcodeSelection(ArrayList<BufferedImage> barcodes) {
         // Assuming all barcodes are same size :)
-        BufferedImage img = barcodes.get(0);
         AtomicBoolean isDone = new AtomicBoolean(false);
         AtomicInteger currentIndex = new AtomicInteger(0);
         ArrayList<Integer> barcodeSelections = new ArrayList<>();
@@ -38,7 +40,7 @@ public class ImageViewer extends JPanel
         }
         JFrame frame = new JFrame("Image Panel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(img.getWidth() * 2, img.getHeight() * 2);
+        frame.setSize(IMG_WIDTH * 2, IMG_HEIGHT * 2);
 
         JTextField startingRowField = new JTextField("0");
         JLabel startingRowLabel = new JLabel("Starting Row (zero indexed)");
@@ -52,7 +54,7 @@ public class ImageViewer extends JPanel
         JButton leftBarcodeButton = new JButton("<");
         JButton doneButton = new JButton("Done");
 
-        ImageViewer panel = new ImageViewer(img);
+        ImageViewer panel = new ImageViewer(barcodes.get(0));
 
         panel.setLayout(null);
         panel.setSize(frame.getSize());
@@ -75,9 +77,9 @@ public class ImageViewer extends JPanel
         barcodesLabel.setBounds((frame.getWidth() - 500) / 2 , 50, 500, 50);
         panel.add(barcodesLabel);
 
-        leftBarcodeButton.setBounds((panel.getWidth() - img.getWidth()) / 2 - 100, (frame.getHeight() - img.getHeight()) / 2 - 10, 50, img.getHeight());
+        leftBarcodeButton.setBounds((panel.getWidth() - IMG_WIDTH) / 2 - 100, (frame.getHeight() - IMG_HEIGHT) / 2 - 10, 50, IMG_HEIGHT);
         panel.add(leftBarcodeButton);
-        rightBarcodeButton.setBounds((panel.getWidth() + img.getWidth()) / 2 + 50, (frame.getHeight() - img.getHeight()) / 2 - 10, 50, img.getHeight());
+        rightBarcodeButton.setBounds((panel.getWidth() + IMG_WIDTH) / 2 + 50, (frame.getHeight() - IMG_HEIGHT) / 2 - 10, 50, IMG_HEIGHT);
         panel.add(rightBarcodeButton);
         doneButton.setBounds(panel.getWidth() / 2 - 100, panel.getHeight() - 100, 200, 50);
         panel.add(doneButton);

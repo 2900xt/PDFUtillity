@@ -27,7 +27,6 @@ public class PDFTools
         float unit_x = width / 3, unit_y = height / 10;
         int x = 0, y = (int)(unit_y / 2);
         BufferedImage subImage = pageImage.getSubimage(x, y, (int)unit_x, (int)unit_y);
-        subImage = ImageTools.resizeImage(subImage, 600, 400);
         return subImage;
     }
 }

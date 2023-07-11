@@ -1,6 +1,7 @@
 package org.taha;
 
 import org.apache.pdfbox.pdmodel.*;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.LosslessFactory;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.taha.Util.PDFTools;
@@ -71,10 +72,27 @@ public class Main
             {
                 PDPage pg = PDFTools.createBlankPage(output);
                 PDPageContentStream cStream = new PDPageContentStream(output, pg);
+
                 float height = pg.getMediaBox().getHeight();
                 float width = pg.getMediaBox().getWidth();
-
                 float unit_x = width / 3, unit_y = height / 11;
+
+                for(int row = startingRow; row < 10; row++)
+                {
+                    for(int col = startingCol; col < 3; col++)
+                    {
+                        try {
+                            BufferedImage img = images.get(imgInd++);
+                            PDImageXObject pdImage = LosslessFactory.createFromImage(output, img);
+                            PDRectangle coordinates = PDFTools.getBarcodeCoordinates(row, col, pg);
+                            cStream.drawImage(pdImage, coordinates.getWidth(), coordinates.getHeight(), unit_x, unit_y * 1.05f);
+                        } catch (IndexOutOfBoundsException ignored) {}
+                    }
+                }
+
+                /*
+                OLD CALCULATION METHOD:
+
                 for(float x = startingCol * unit_x; x < width; x += unit_x)
                 {
                     for(float y = height - (unit_y / 2 + (startingRow + 1.125f) * unit_y); y >= 0; y -= (unit_y * 0.995f))
@@ -86,6 +104,7 @@ public class Main
                         } catch (IndexOutOfBoundsException ignored) {}
                     }
                 }
+                */
                 startingRow = 0;
                 startingCol = 0;
                 cStream.close();

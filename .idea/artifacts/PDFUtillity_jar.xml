@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="PDFUtillity:jar">
+  <artifact type="jar" name="PDFUtillity:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/PDFUtillity_jar</output-path>
     <root id="archive" name="PDFUtillity.jar">
       <element id="module-output" name="PDFUtillity" />

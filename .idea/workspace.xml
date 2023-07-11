@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="PDFUtillity:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Fixed output quality issues and DPI.">
+    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Added build JAR and fixed minor width/height scaling issues.">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/PDFUtillity_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/PDFUtillity_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" afterDir="false" />
@@ -125,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689006050569</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added build JAR and fixed minor width/height scaling issues.">
+      <option name="closed" value="true" />
+      <created>1689008200078</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689008200078</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +157,7 @@
     <MESSAGE value="Done" />
     <MESSAGE value="Added Better UI, Fixed scaling issue" />
     <MESSAGE value="Fixed output quality issues and DPI." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed output quality issues and DPI." />
+    <MESSAGE value="Added build JAR and fixed minor width/height scaling issues." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added build JAR and fixed minor width/height scaling issues." />
   </component>
 </project>

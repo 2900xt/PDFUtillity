@@ -30,4 +30,14 @@ public class PDFTools
         int x = 0, y = (int)(unit_y / 2);
         return pageImage.getSubimage(x, y, (int)unit_x, (int)unit_y);
     }
+
+    public static PDRectangle getBarcodeCoordinates(int row, int col, PDPage pg)
+    {
+        float height = pg.getMediaBox().getHeight();
+        float width = pg.getMediaBox().getWidth();
+        float unit_x = width / 3, unit_y = height / 11;
+        float y = (height - (unit_y / 2 + 1.125f * unit_y)) - ((unit_y * 0.998f) * row);
+        float x = unit_x * col;
+        return new PDRectangle(x, y);
+    }
 }

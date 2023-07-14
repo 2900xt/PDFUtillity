@@ -9,10 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Added build JAR and fixed minor width/height scaling issues.">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/PDFUtillity_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/PDFUtillity_jar.xml" afterDir="false" />
+    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Alligned Output to Vertical instead of Horizontal axis">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/BarcodeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23__12_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23__12_10_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/ImageTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/ImageTools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,11 +34,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>

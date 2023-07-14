@@ -11,7 +11,29 @@ import java.io.IOException;
 public class PDFTools
 {
     public static final float QUALITY = 600f;
+
+    //Standard A4 PDF width and height:
     public static final float STD_WIDTH = 612f, STD_HEIGHT = 792f;
+    public static final float UNIT_X = (STD_WIDTH / 3) * 0.98f, UNIT_Y = STD_HEIGHT / 11;
+    public static final float X_START = 0, Y_START = (STD_HEIGHT - (UNIT_Y * 1.52f));
+    public static final float[] barcodeXLookup = {
+            X_START,
+            X_START + UNIT_X,
+            X_START + UNIT_X * 2,
+    };
+
+    public static final float[] barcodeYLookup = {
+            Y_START,
+            Y_START - UNIT_Y,
+            Y_START - UNIT_Y * 2,
+            Y_START - UNIT_Y * 3,
+            Y_START - UNIT_Y * 4,
+            Y_START - UNIT_Y * 5,
+            Y_START - UNIT_Y * 6,
+            Y_START - UNIT_Y * 7,
+            Y_START - UNIT_Y * 8,
+            Y_START - UNIT_Y * 9,
+    };
     public static PDPage createBlankPage(PDDocument doc)
     {
         PDPage newPage = new PDPage(new PDRectangle(STD_WIDTH, STD_HEIGHT));
@@ -19,25 +41,15 @@ public class PDFTools
         return newPage;
     }
 
-    public static BufferedImage getImageFromPDF(PDDocument document) throws IOException
+    public static BufferedImage getImageFromPDF(PDDocument document, int page) throws IOException
     {
         PDFRenderer renderer = new PDFRenderer(document);
-        BufferedImage pageImage = renderer.renderImageWithDPI(0, QUALITY);
-
-        float height = pageImage.getHeight();
-        float width = pageImage.getWidth();
-        float unit_x = width / 3, unit_y = height / 10;
-        int x = 0, y = (int)(unit_y / 2);
-        return pageImage.getSubimage(x, y, (int)unit_x, (int)unit_y);
+        return renderer.renderImageWithDPI(page, QUALITY);
     }
 
+    //Returns the position of a barcode from a PDF in a 10x3 standard orientation
     public static PDRectangle getBarcodeCoordinates(int row, int col, PDPage pg)
     {
-        float height = pg.getMediaBox().getHeight();
-        float width = pg.getMediaBox().getWidth();
-        float unit_x = width / 3, unit_y = height / 11;
-        float y = (height - (unit_y / 2 + 1.125f * unit_y)) - ((unit_y * 0.998f) * row);
-        float x = unit_x * col;
-        return new PDRectangle(x, y);
+        return new PDRectangle(barcodeXLookup[col], barcodeYLookup[row]);
     }
 }

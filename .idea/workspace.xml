@@ -10,11 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Usage of more than one barcode per pdf file import.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23,_12_10_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23__12_10_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T092952.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T093204.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T093314.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T093410.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T093551.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T093625.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T093852.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OutputFiles/2023-07-12T094240.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

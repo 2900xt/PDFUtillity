@@ -42,9 +42,9 @@ public class Main
                 float width = pg.getMediaBox().getWidth();
                 float unit_x = width / 3, unit_y = height / 11;
 
-                for(int row = startingRow; row < 10; row++)
+                for(int col = startingCol; col < 3; col++)
                 {
-                    for(int col = startingCol; col < 3; col++)
+                    for(int row = startingRow; row < 10; row++)
                     {
                         try {
                             BufferedImage img = images.get(imgInd++);
@@ -53,9 +53,9 @@ public class Main
                             cStream.drawImage(pdImage, coordinates.getWidth(), coordinates.getHeight(), unit_x, unit_y * 1.05f);
                         } catch (IndexOutOfBoundsException ignored) {}
                     }
+                    startingRow = 0;
                 }
 
-                startingRow = 0;
                 startingCol = 0;
                 cStream.close();
             }
@@ -71,8 +71,13 @@ public class Main
         } catch (Exception e)
         {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Critical Error", JOptionPane.ERROR_MESSAGE);
-            System.exit(-1);
+            ErrorExit(e.getMessage());
         }
+    }
+
+    public static void ErrorExit(String message)
+    {
+        JOptionPane.showMessageDialog(null, message, "Critical Error", JOptionPane.ERROR_MESSAGE);
+        System.exit(-1);
     }
 }

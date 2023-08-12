@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ImageViewer extends JPanel
 {
     private BufferedImage image;
-    private static final int IMG_WIDTH = 600, IMG_HEIGHT = 400;
+    private static final int IMG_WIDTH = 500, IMG_HEIGHT = 300;
     private ImageViewer(BufferedImage img)
     {
         this.image = ImageTools.resizeImage(img, IMG_WIDTH, IMG_HEIGHT);
@@ -42,9 +42,9 @@ public class ImageViewer extends JPanel
         {
             barcodeSelections.add(0);
         }
-        JFrame frame = new JFrame("Image Panel");
+        JFrame frame = new JFrame("Amazon Barcode List Editor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(IMG_WIDTH * 2, IMG_HEIGHT * 2);
+        frame.setSize((int)(IMG_WIDTH * 1.5), IMG_HEIGHT * 2);
         frame.setResizable(false);
 
         JTextField startingRowField = new JTextField("1");
@@ -52,8 +52,8 @@ public class ImageViewer extends JPanel
         JTextField startingColField = new JTextField("1");
         JLabel startingColLabel = new JLabel("Starting Column");
         JTextField instancesField = new JTextField("0");
-        JLabel instancesLabel = new JLabel("Instances for barcode");
-        JLabel barcodesLabel = new JLabel("Available Barcodes");
+        JLabel instancesLabel = new JLabel("Barcode Instances");
+        JLabel barcodesLabel = new JLabel("Amazon Barcodes Editor");
 
         JButton rightBarcodeButton = new JButton(">");
         JButton leftBarcodeButton = new JButton("<");
@@ -64,32 +64,32 @@ public class ImageViewer extends JPanel
 
         panel.setLayout(null);
         panel.setSize(frame.getSize());
-        startingRowLabel.setBounds(panel.getWidth() / 2 - 200, 130, 300, 20);
+        startingRowLabel.setBounds(panel.getWidth() / 2 - 175, 80, 300, 20);
         panel.add(startingRowLabel);
-        startingRowField.setBounds(panel.getWidth() / 2 - 200 + 35, 155, 75, 20);
+        startingRowField.setBounds(panel.getWidth() / 2 - 175, 100, 75, 20);
         panel.add(startingRowField);
-        startingColLabel.setBounds(panel.getWidth() / 2 , 130, 300, 20);
+        startingColLabel.setBounds(panel.getWidth() / 2  + 25, 80, 300, 20);
         panel.add(startingColLabel);
-        startingColField.setBounds( panel.getWidth() / 2 + 35 , 155, 75, 20);
+        startingColField.setBounds( panel.getWidth() / 2 + 35 , 100, 75, 20);
         panel.add(startingColField);
 
-        instancesField.setBounds(panel.getWidth() / 2 - 75, panel.getHeight() - 150, 150, 20);
+        instancesField.setBounds(panel.getWidth() / 2 - 100, panel.getHeight() - 135, 150, 20);
         panel.add(instancesField);
-        instancesLabel.setBounds(panel.getWidth() / 2 - 100, panel.getHeight() - 175, 200, 20);
+        instancesLabel.setBounds(panel.getWidth() / 2 - 125, panel.getHeight() - 155, 200, 20);
         instancesLabel.setHorizontalAlignment(JLabel.CENTER);
         panel.add(instancesLabel);
         barcodesLabel.setHorizontalAlignment(JLabel.CENTER);
-        barcodesLabel.setFont(new Font("Arial", Font.BOLD, 50));
-        barcodesLabel.setBounds((frame.getWidth() - 500) / 2 , 50, 500, 50);
+        barcodesLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        barcodesLabel.setBounds((frame.getWidth() - 550) / 2 , 20, 500, 50);
         panel.add(barcodesLabel);
 
-        leftBarcodeButton.setBounds((panel.getWidth() - IMG_WIDTH) / 2 - 100, (frame.getHeight() - IMG_HEIGHT) / 2 - 10, 50, IMG_HEIGHT);
+        leftBarcodeButton.setBounds((panel.getWidth() - IMG_WIDTH) / 2 - 100, (frame.getHeight() - IMG_HEIGHT) / 2 - 20, 50, IMG_HEIGHT);
         panel.add(leftBarcodeButton);
-        rightBarcodeButton.setBounds((panel.getWidth() + IMG_WIDTH) / 2 + 50, (frame.getHeight() - IMG_HEIGHT) / 2 - 10, 50, IMG_HEIGHT);
+        rightBarcodeButton.setBounds((panel.getWidth() + IMG_WIDTH) / 2 + 30, (frame.getHeight() - IMG_HEIGHT) / 2 - 20, 50, IMG_HEIGHT);
         panel.add(rightBarcodeButton);
-        doneButton.setBounds(panel.getWidth() / 2 - 175, panel.getHeight() - 100, 150, 30);
+        doneButton.setBounds(panel.getWidth() / 2 - 205, panel.getHeight() - 100, 150, 30);
         panel.add(doneButton);
-        addBarcodeButton.setBounds(panel.getWidth() / 2 + 25, panel.getHeight() - 100, 150, 30);
+        addBarcodeButton.setBounds(panel.getWidth() / 2 - 5, panel.getHeight() - 100, 150, 30);
         panel.add(addBarcodeButton);
         frame.setContentPane(panel);
         frame.setVisible(true);

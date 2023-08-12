@@ -77,7 +77,7 @@ public class BarcodeSelector extends JPanel
         colLabel.setHorizontalAlignment(JLabel.CENTER);
         colLabel.setBounds(120, 375, 50, 20);
 
-        JFrame frame = new JFrame("Barcode Selector");
+        JFrame frame = new JFrame("Amazon Barcode Selector");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
         frame.setResizable(false);
@@ -87,10 +87,22 @@ public class BarcodeSelector extends JPanel
         JButton chooseFileButton = new JButton("Choose File");
         chooseFileButton.setBounds(40, 250, 150, 100);
         chooseFileButton.addActionListener((event) -> {
+
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Select PDF File");
             fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-            fileChooser.setFileFilter(new FileNameExtensionFilter("PDF Files    ", "pdf"));
+
+            // Get the user's home directory
+            String userHome = System.getProperty("user.home");
+
+            // Set the current directory of the file chooser to the Downloads directory
+            File downloadsDirectory = new File(userHome + File.separator + "Downloads");
+            fileChooser.setCurrentDirectory(downloadsDirectory);
+
+            Action details = fileChooser.getActionMap().get("viewTypeDetails");
+            details.actionPerformed(null);
+
+            fileChooser.setFileFilter(new FileNameExtensionFilter("PDF Files", "pdf"));
             if (fileChooser.showOpenDialog(null) != JFileChooser.APPROVE_OPTION) {
                 throw new RuntimeException("No File Selected!");
             } else {
@@ -100,15 +112,14 @@ public class BarcodeSelector extends JPanel
                 try {
                     PDDocument doc = PDDocument.load(f);
                     panel.setPDFImage(doc, pageNumber.get());
-                    System.out.println(doc.getPage(0).getMediaBox().getWidth() + ", " +  doc.getPage(0).getMediaBox().getHeight());
                     chosenDocument.set(doc);
                     nextPageButton.setEnabled(pageNumber.get() < doc.getNumberOfPages() - 1);
                     prevPageButton.setEnabled(pageNumber.get() > 0);
                     doneButton.setEnabled(true);
                     frame.repaint();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
-                    System.exit(-1);
+                    Main.ErrorExit("Error Reading PDF File: " + f.getAbsolutePath());
                 }
             }
         });
@@ -125,9 +136,9 @@ public class BarcodeSelector extends JPanel
             try {
                 BufferedImage barcode = ImageTools.getBarcodeSubImage(row, col, pageNumber.get(), chosenDocument.get());
                 chosenBarcode.set(barcode);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-                System.exit(-1);
+                Main.ErrorExit("Unable to read barcode sample from PDF");
             }
             isDone.set(true);
         });

@@ -17,9 +17,9 @@ import java.util.concurrent.atomic.AtomicReference;
 public class BarcodeSelector extends JPanel
 {
     private BufferedImage pdfImage;
-    private static final int WIDTH = 800, HEIGHT = 800;
-    private static final int IMG_X = (int) (WIDTH / 3.5), IMG_Y = HEIGHT / 10;
-    private static final int IMG_W = (int) (WIDTH - (WIDTH / 2.5)), IMG_H = HEIGHT - (HEIGHT / 5);
+    private static final int WIDTH = 600, HEIGHT = 550;
+    private static final int IMG_X = (int) (WIDTH / 3), IMG_Y = HEIGHT / 20;
+    private static final int IMG_W = (int) (WIDTH - (WIDTH / 2.5)), IMG_H = (int) (HEIGHT -  (HEIGHT / 5));
 
     private BarcodeSelector()
     {
@@ -59,23 +59,23 @@ public class BarcodeSelector extends JPanel
 
         JLabel selectedFileLabel = new JLabel("No File Selected");
         selectedFileLabel.setHorizontalAlignment(JLabel.CENTER);
-        selectedFileLabel.setBounds(375, 30, 200, 20);
+        selectedFileLabel.setBounds(5, 130, 200, 20);
 
-        JTextField rowField = new JTextField("1");
+        JTextField rowField = new JTextField("");
         rowField.setHorizontalAlignment(JTextField.CENTER);
-        rowField.setBounds(40, 400, 50, 20);
+        rowField.setBounds(40, 475, 50, 20);
 
         JLabel rowLabel = new JLabel("ROW");
         rowLabel.setHorizontalAlignment(JLabel.CENTER);
-        rowLabel.setBounds(40, 375, 50, 20);
+        rowLabel.setBounds(40, 450, 50, 20);
 
-        JTextField colField = new JTextField("1");
+        JTextField colField = new JTextField("");
         colField.setHorizontalAlignment(JTextField.CENTER);
-        colField.setBounds(120, 400, 50, 20);
+        colField.setBounds(120, 475, 50, 20);
 
         JLabel colLabel = new JLabel("COL");
         colLabel.setHorizontalAlignment(JLabel.CENTER);
-        colLabel.setBounds(120, 375, 50, 20);
+        colLabel.setBounds(120, 450, 50, 20);
 
         JFrame frame = new JFrame("Amazon Barcode Selector");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +85,7 @@ public class BarcodeSelector extends JPanel
         BarcodeSelector panel = new BarcodeSelector();
 
         JButton chooseFileButton = new JButton("Choose File");
-        chooseFileButton.setBounds(40, 250, 150, 100);
+        chooseFileButton.setBounds(30, 200, 150, 100);
         chooseFileButton.addActionListener((event) -> {
 
             JFileChooser fileChooser = new JFileChooser();
@@ -124,14 +124,27 @@ public class BarcodeSelector extends JPanel
             }
         });
 
-        doneButton.setBounds(40, 500, 150, 100);
+        doneButton.setBounds(30, 325, 150, 100);
         doneButton.setEnabled(false);
         doneButton.addActionListener((event) -> {
             if(chosenDocument.get() == null) return;
 
-            int row = Integer.parseInt(rowField.getText()) - 1;
-            int col = Integer.parseInt(colField.getText()) - 1;
+            int row, col;
+            if(rowField.getText().isEmpty())
+            {
+                row = 1;
+            } else
+            {
+                row = Integer.parseInt(rowField.getText()) - 1;
+            }
 
+            if(colField.getText().isEmpty())
+            {
+                col = 1;
+            } else
+            {
+                col = Integer.parseInt(colField.getText()) - 1;
+            }
 
             try {
                 BufferedImage barcode = ImageTools.getBarcodeSubImage(row, col, pageNumber.get(), chosenDocument.get());
@@ -145,10 +158,10 @@ public class BarcodeSelector extends JPanel
 
         JLabel pageLabel = new JLabel("Page 1");
         pageLabel.setHorizontalAlignment(JLabel.CENTER);
-        pageLabel.setBounds(425, 725, 100, 20);
+        pageLabel.setBounds(325, HEIGHT - 75, 100, 20);
 
 
-        nextPageButton.setBounds(525, 725, 75, 20);
+        nextPageButton.setBounds(425, HEIGHT - 75, 75, 20);
         nextPageButton.addActionListener((event) -> {
             PDDocument doc = chosenDocument.get();
             pageNumber.getAndIncrement();
@@ -167,7 +180,7 @@ public class BarcodeSelector extends JPanel
             prevPageButton.setEnabled(pageNumber.get() > 0);
         });
 
-        prevPageButton.setBounds(350, 725, 75, 20);
+        prevPageButton.setBounds(250, HEIGHT - 75, 75, 20);
         prevPageButton.addActionListener((event) -> {
             PDDocument doc = chosenDocument.get();
             pageNumber.getAndDecrement();

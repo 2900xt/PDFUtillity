@@ -13,14 +13,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ImageViewer extends JPanel
 {
     private BufferedImage image;
-    private static final int IMG_WIDTH = 500, IMG_HEIGHT = 300;
+    private static final int IMG_WIDTH = 400, IMG_HEIGHT = 200;
     private ImageViewer(BufferedImage img)
     {
         this.image = ImageTools.resizeImage(img, IMG_WIDTH, IMG_HEIGHT);
     }
     protected void paintComponent(Graphics g)
     {
-        g.drawImage(image, (getWidth() - image.getWidth()) / 2, (getHeight() - image.getHeight()) / 2,  image.getWidth(), image.getHeight(), null);
+        g.drawImage(image, (getWidth() - image.getWidth()) / 2, (getHeight() - image.getHeight() / 2) / 2,  image.getWidth(), image.getHeight() / 2, null);
     }
 
     public void changeImage(BufferedImage image)
@@ -47,11 +47,11 @@ public class ImageViewer extends JPanel
         frame.setSize((int)(IMG_WIDTH * 1.5), IMG_HEIGHT * 2);
         frame.setResizable(false);
 
-        JTextField startingRowField = new JTextField("1");
+        JTextField startingRowField = new JTextField("");
         JLabel startingRowLabel = new JLabel("Starting Row");
-        JTextField startingColField = new JTextField("1");
+        JTextField startingColField = new JTextField("");
         JLabel startingColLabel = new JLabel("Starting Column");
-        JTextField instancesField = new JTextField("0");
+        JTextField instancesField = new JTextField("");
         JLabel instancesLabel = new JLabel("Barcode Instances");
         JLabel barcodesLabel = new JLabel("Amazon Barcodes Editor");
 
@@ -95,19 +95,47 @@ public class ImageViewer extends JPanel
         frame.setVisible(true);
 
         doneButton.addActionListener((event) -> {
-            barcodeSelections.set(0, Integer.parseInt(startingRowField.getText()));
-            barcodeSelections.set(1, Integer.parseInt(startingColField.getText()));
-            barcodeSelections.set(currentIndex.get() + 2, Integer.parseInt(instancesField.getText()));
+            if(startingRowField.getText().isEmpty())
+            {
+                barcodeSelections.set(0, 0);
+            } else {
+                barcodeSelections.set(0, Integer.parseInt(startingRowField.getText()));
+            }
+
+            if(startingColField.getText().isEmpty())
+            {
+                barcodeSelections.set(1, 0);
+            } else {
+                barcodeSelections.set(1, Integer.parseInt(startingColField.getText()));
+            }
+
+            if(instancesField.getText().isEmpty())
+            {
+                barcodeSelections.set(currentIndex.get() + 2, 1);
+            } else {
+                barcodeSelections.set(currentIndex.get() + 2, Integer.parseInt(instancesField.getText()));
+            }
             isDone.set(true);
         });
 
         rightBarcodeButton.addActionListener((event) -> {
             if(currentIndex.get() + 1 < barcodes.size())
             {
-                barcodeSelections.set(currentIndex.get() + 2, Integer.parseInt(instancesField.getText()));
+                if(instancesField.getText().isEmpty())
+                {
+                    barcodeSelections.set(currentIndex.get() + 2, 1);
+                } else {
+                    barcodeSelections.set(currentIndex.get() + 2, Integer.parseInt(instancesField.getText()));
+                }
                 currentIndex.getAndIncrement();
                 panel.changeImage(barcodes.get(currentIndex.get()));
-                instancesField.setText(String.valueOf(barcodeSelections.get(currentIndex.get() + 2)));
+
+                if(barcodeSelections.get(currentIndex.get()+2) == 1)
+                {
+                    instancesField.setText("");
+                } else {
+                    instancesField.setText(String.valueOf(barcodeSelections.get(currentIndex.get() + 2)));
+                }
                 frame.repaint();
             }
 
@@ -119,10 +147,21 @@ public class ImageViewer extends JPanel
         leftBarcodeButton.addActionListener((event) -> {
             if(currentIndex.get() > 0)
             {
-                barcodeSelections.set(currentIndex.get() + 2, Integer.parseInt(instancesField.getText()));
+                if(instancesField.getText().isEmpty())
+                {
+                    barcodeSelections.set(currentIndex.get() + 2, 1);
+                } else {
+                    barcodeSelections.set(currentIndex.get() + 2, Integer.parseInt(instancesField.getText()));
+                }
                 currentIndex.getAndDecrement();
                 panel.changeImage(barcodes.get(currentIndex.get()));
-                instancesField.setText(String.valueOf(barcodeSelections.get(currentIndex.get() + 2)));
+
+                if(barcodeSelections.get(currentIndex.get()+2) == 1)
+                {
+                    instancesField.setText("");
+                } else {
+                    instancesField.setText(String.valueOf(barcodeSelections.get(currentIndex.get() + 2)));
+                }
                 frame.repaint();
             }
 

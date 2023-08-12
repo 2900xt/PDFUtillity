@@ -47,10 +47,10 @@ public class ImageViewer extends JPanel
         frame.setSize(IMG_WIDTH * 2, IMG_HEIGHT * 2);
         frame.setResizable(false);
 
-        JTextField startingRowField = new JTextField("0");
-        JLabel startingRowLabel = new JLabel("Starting Row (zero indexed)");
-        JTextField startingColField = new JTextField("0");
-        JLabel startingColLabel = new JLabel("Starting Column (zero indexed)");
+        JTextField startingRowField = new JTextField("1");
+        JLabel startingRowLabel = new JLabel("Starting Row");
+        JTextField startingColField = new JTextField("1");
+        JLabel startingColLabel = new JLabel("Starting Column");
         JTextField instancesField = new JTextField("0");
         JLabel instancesLabel = new JLabel("Instances for barcode");
         JLabel barcodesLabel = new JLabel("Available Barcodes");
@@ -156,10 +156,12 @@ public class ImageViewer extends JPanel
         {
             for(int j = 0; j < barcodeSelections.get(i); j++)
             {
-                output.add(barcodes.get(i));
+                output.add(barcodes.get(i - 2));
             }
         }
 
+        barcodeSelections.set(0, barcodeSelections.get(0) - 1);
+        barcodeSelections.set(1, barcodeSelections.get(1) - 1);
         return new BarcodeData(output, barcodeSelections.get(0), barcodeSelections.get(1));
     }
 }

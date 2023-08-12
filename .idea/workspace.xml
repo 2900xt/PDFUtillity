@@ -9,15 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Alligned Output to Vertical instead of Horizontal axis">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/BarcodeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23__12_10_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23__12_10_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Usage of more than one barcode per pdf file import.">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23,_12_10_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_10_23__12_10_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/ImageTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/ImageTools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689008200078</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Usage of more than one barcode per pdf file import.">
+      <created>1689353131053</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1689353131053</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +166,7 @@
     <MESSAGE value="Added Better UI, Fixed scaling issue" />
     <MESSAGE value="Fixed output quality issues and DPI." />
     <MESSAGE value="Added build JAR and fixed minor width/height scaling issues." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added build JAR and fixed minor width/height scaling issues." />
+    <MESSAGE value="Usage of more than one barcode per pdf file import." />
+    <option name="LAST_COMMIT_MESSAGE" value="Usage of more than one barcode per pdf file import." />
   </component>
 </project>

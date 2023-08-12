@@ -61,7 +61,7 @@ public class BarcodeSelector extends JPanel
         selectedFileLabel.setHorizontalAlignment(JLabel.CENTER);
         selectedFileLabel.setBounds(375, 30, 200, 20);
 
-        JTextField rowField = new JTextField("0");
+        JTextField rowField = new JTextField("1");
         rowField.setHorizontalAlignment(JTextField.CENTER);
         rowField.setBounds(40, 400, 50, 20);
 
@@ -69,7 +69,7 @@ public class BarcodeSelector extends JPanel
         rowLabel.setHorizontalAlignment(JLabel.CENTER);
         rowLabel.setBounds(40, 375, 50, 20);
 
-        JTextField colField = new JTextField("0");
+        JTextField colField = new JTextField("1");
         colField.setHorizontalAlignment(JTextField.CENTER);
         colField.setBounds(120, 400, 50, 20);
 
@@ -100,6 +100,7 @@ public class BarcodeSelector extends JPanel
                 try {
                     PDDocument doc = PDDocument.load(f);
                     panel.setPDFImage(doc, pageNumber.get());
+                    System.out.println(doc.getPage(0).getMediaBox().getWidth() + ", " +  doc.getPage(0).getMediaBox().getHeight());
                     chosenDocument.set(doc);
                     nextPageButton.setEnabled(pageNumber.get() < doc.getNumberOfPages() - 1);
                     prevPageButton.setEnabled(pageNumber.get() > 0);
@@ -117,8 +118,8 @@ public class BarcodeSelector extends JPanel
         doneButton.addActionListener((event) -> {
             if(chosenDocument.get() == null) return;
 
-            int row = Integer.parseInt(rowField.getText());
-            int col = Integer.parseInt(colField.getText());
+            int row = Integer.parseInt(rowField.getText()) - 1;
+            int col = Integer.parseInt(colField.getText()) - 1;
 
 
             try {
@@ -201,7 +202,6 @@ public class BarcodeSelector extends JPanel
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
 
         panel.setVisible(false);
         panel.setEnabled(false);

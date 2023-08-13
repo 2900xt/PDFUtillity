@@ -9,10 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Error Detection">
+    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Jar File">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/ImageViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/ImageTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/ImageTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,14 +66,14 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/taha/.m2/repository/org/apache/pdfbox/pdfbox/2.0.28&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/1038493/Documents/Code/Projects/WalmartBarcodeEditor&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager" selected="JAR Application.PDFUtillity.jar">
+  <component name="RunManager" selected="Application.Testing Launch">
     <configuration name="Testing Launch" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.taha.Main" />
       <module name="PDFUtillity" />
@@ -152,7 +155,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691858532791</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="UI Overhaul">
+      <created>1691862242333</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691862242333</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Jar File">
+      <created>1691862477463</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1691862477463</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +190,8 @@
     <MESSAGE value="Added build JAR and fixed minor width/height scaling issues." />
     <MESSAGE value="Usage of more than one barcode per pdf file import." />
     <MESSAGE value="Error Detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error Detection" />
+    <MESSAGE value="UI Overhaul" />
+    <MESSAGE value="Jar File" />
+    <option name="LAST_COMMIT_MESSAGE" value="Jar File" />
   </component>
 </project>

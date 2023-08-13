@@ -1,6 +1,8 @@
 package org.taha;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.taha.Util.ImageTools;
 import org.taha.Util.PDFTools;
 
@@ -16,10 +18,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class BarcodeSelector extends JPanel
 {
-    private BufferedImage pdfImage;
+    public BufferedImage pdfImage;
     private static final int WIDTH = 600, HEIGHT = 550;
     private static final int IMG_X = (int) (WIDTH / 3), IMG_Y = HEIGHT / 20;
-    private static final int IMG_W = (int) (WIDTH - (WIDTH / 2.5)), IMG_H = (int) (HEIGHT -  (HEIGHT / 5));
+    private static final int IMG_W = (int) (WIDTH - (WIDTH / 2.5)), IMG_H = (int) (HEIGHT - 1.3 * (HEIGHT / 5));
 
     private BarcodeSelector()
     {
@@ -132,7 +134,7 @@ public class BarcodeSelector extends JPanel
             int row, col;
             if(rowField.getText().isEmpty())
             {
-                row = 1;
+                row = 0;
             } else
             {
                 row = Integer.parseInt(rowField.getText()) - 1;
@@ -140,14 +142,14 @@ public class BarcodeSelector extends JPanel
 
             if(colField.getText().isEmpty())
             {
-                col = 1;
+                col = 0;
             } else
             {
                 col = Integer.parseInt(colField.getText()) - 1;
             }
 
             try {
-                BufferedImage barcode = ImageTools.getBarcodeSubImage(row, col, pageNumber.get(), chosenDocument.get());
+                BufferedImage barcode = ImageTools.getBarcodeSubImage(row, col, pageNumber.get(), chosenDocument.get(), panel);
                 chosenBarcode.set(barcode);
             } catch (Exception e) {
                 e.printStackTrace();

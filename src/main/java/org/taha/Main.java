@@ -8,10 +8,8 @@ import org.taha.Util.BarcodeData;
 import org.taha.Util.PDFTools;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -50,7 +48,7 @@ public class Main
                             BufferedImage img = images.get(imgInd++);
                             PDImageXObject pdImage = LosslessFactory.createFromImage(output, img);
                             PDRectangle coordinates = PDFTools.getBarcodeCoordinates(row, col, pg);
-                            cStream.drawImage(pdImage, coordinates.getWidth(), coordinates.getHeight(), unit_x, unit_y * 1.05f);
+                            cStream.drawImage(pdImage, coordinates.getWidth(), coordinates.getHeight(), unit_x * PDFTools.currentLookupData.WMultiplier, unit_y * PDFTools.currentLookupData.HMultiplier);
                         } catch (IndexOutOfBoundsException ignored) {}
                     }
                     startingRow = 0;

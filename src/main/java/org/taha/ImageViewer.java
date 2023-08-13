@@ -97,14 +97,14 @@ public class ImageViewer extends JPanel
         doneButton.addActionListener((event) -> {
             if(startingRowField.getText().isEmpty())
             {
-                barcodeSelections.set(0, 0);
+                barcodeSelections.set(0, 1);
             } else {
                 barcodeSelections.set(0, Integer.parseInt(startingRowField.getText()));
             }
 
             if(startingColField.getText().isEmpty())
             {
-                barcodeSelections.set(1, 0);
+                barcodeSelections.set(1, 1);
             } else {
                 barcodeSelections.set(1, Integer.parseInt(startingColField.getText()));
             }
@@ -177,6 +177,8 @@ public class ImageViewer extends JPanel
         rightBarcodeButton.doClick();
         leftBarcodeButton.doClick();
 
+        frame.repaint();
+
         while(!isDone.get())
         {
             if(barcodeAddRequest.get())
@@ -199,8 +201,6 @@ public class ImageViewer extends JPanel
             }
         }
 
-        barcodeSelections.set(0, barcodeSelections.get(0) - 1);
-        barcodeSelections.set(1, barcodeSelections.get(1) - 1);
-        return new BarcodeData(output, barcodeSelections.get(0), barcodeSelections.get(1));
+        return new BarcodeData(output, barcodeSelections.get(0) - 1, barcodeSelections.get(1) - 1);
     }
 }

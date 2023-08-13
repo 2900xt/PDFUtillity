@@ -89,6 +89,11 @@ public class BarcodeSelector extends JPanel
         JButton chooseFileButton = new JButton("Choose File");
         chooseFileButton.setBounds(30, 200, 150, 100);
         chooseFileButton.addActionListener((event) -> {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch(Exception ex) {
+                ex.printStackTrace()
+            }
 
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Select PDF File");

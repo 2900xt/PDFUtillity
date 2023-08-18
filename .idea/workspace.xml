@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Almost Done">
+    <list default="true" id="37a27b38-8209-4a9f-a300-94c7349ff29f" name="Changes" comment="Bug Fix + build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/PDFUtillity_jar/PDFUtillity.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/PDFUtillity_jar/PDFUtillity.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/BarcodeSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/taha/Util/PDFTools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691962345307</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="UI Improvement">
+      <created>1691963579891</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1691963579891</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +205,7 @@
     <MESSAGE value="UI Overhaul" />
     <MESSAGE value="Jar File" />
     <MESSAGE value="Almost Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Almost Done" />
+    <MESSAGE value="UI Improvement" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI Improvement" />
   </component>
 </project>

@@ -92,7 +92,7 @@ public class BarcodeSelector extends JPanel
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch(Exception ex) {
-                ex.printStackTrace()
+                ex.printStackTrace();
             }
 
             JFileChooser fileChooser = new JFileChooser();

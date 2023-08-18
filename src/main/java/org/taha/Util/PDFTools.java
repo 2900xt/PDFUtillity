@@ -64,7 +64,7 @@ public class PDFTools
     );
 
 
-    public static BarcodeLookupData currentLookupData = walmartData;
+    public static BarcodeLookupData currentLookupData = amazonData;
     public static PDPage createBlankPage(PDDocument doc)
     {
         PDPage newPage = new PDPage(new PDRectangle(STD_WIDTH, STD_HEIGHT));
